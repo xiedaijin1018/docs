@@ -105,3 +105,57 @@
 #### redis分布式锁
 * setnx + setex
 * setnx(key, value, nx, px)
+
+### kafka
+#### kafka的架构
+producer consumer broker(topic, partition) zookeeper
+
+#### kafka高吞吐量的原因
+* 顺序读写磁盘
+* 零拷贝
+* 分区分段+索引
+* 批量压缩发送
+* 使用pagecache机制间隔时间刷盘fsync
+
+#### kafka的副本同步机制
+
+#### kafka消息的高可靠方案
+
+#### kafka的rebalance机制
+
+### rocketmq
+#### rocketmq的架构
+producer consumer nameserver broker(topic, queue) 
+
+#### rocketmq怎么实现事务消息
+
+#### rocketmq如何实现顺序消息
+
+
+#### rocketmq消息持久化机制
+
+#### rocketmq如何保证消息不丢失
+生产者
+* 同步阻塞发送，失败重试，查询确认
+* 异步发送监听回调
+* ack，可能存储commitlog成功，存comsumerQueue失败，对消费者不见
+
+broker：同步刷盘，集群同步复制
+
+
+### 数据库
+#### 如何分库分表
+* 垂直：垂直分出来的结构是不一样的，比如把用户表和订单表分到两个库，把同一表中的两列分到两个表中
+* 水平：水平分出来的结构还是一样的，只是内容不一样，比如用户信息根据地方进行分库或者分表
+问题：
+* 跨库事务
+* 跨库关联
+* 聚合函数
+* 分布式id
+
+#### 分布式id
+* uuid：简单，性能好，没有顺序没有业务意义
+* 雪花算法
+
+### es
+#### 
